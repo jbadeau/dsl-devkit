@@ -1,0 +1,26 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.check.core.test
+  description: Tests for Check DSL core
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.check.core
+    - component:default/com.avaloq.tools.ddk.check.runtime.core
+    - component:default/com.avaloq.tools.ddk.check.ui
+    - component:default/com.avaloq.tools.ddk.xtext.test.core
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.check.test.runtime.tests
+    - component:default/com.avaloq.tools.ddk.check.ui.test
+    - component:default/com.avaloq.tools.ddk.sample.helloworld.ui.test
+    - component:default/com.avaloq.tools.ddk.xtext.test
+  projects:
+    - com.avaloq.tools.ddk.check.core.test

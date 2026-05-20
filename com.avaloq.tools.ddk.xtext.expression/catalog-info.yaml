@@ -1,0 +1,30 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.xtext.expression
+  description: Expression DSL extension
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.xtext
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.runtime.feature
+    - component:default/com.avaloq.tools.ddk.workflow
+    - component:default/com.avaloq.tools.ddk.xtext.export
+    - component:default/com.avaloq.tools.ddk.xtext.export.generator
+    - component:default/com.avaloq.tools.ddk.xtext.export.ui
+    - component:default/com.avaloq.tools.ddk.xtext.expression.ide
+    - component:default/com.avaloq.tools.ddk.xtext.expression.ui
+    - component:default/com.avaloq.tools.ddk.xtext.generator
+    - component:default/com.avaloq.tools.ddk.xtext.generator.test
+    - component:default/com.avaloq.tools.ddk.xtext.scope
+    - component:default/com.avaloq.tools.ddk.xtext.scope.ui
+  projects:
+    - com.avaloq.tools.ddk.xtext.expression

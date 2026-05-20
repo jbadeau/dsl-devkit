@@ -1,0 +1,49 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.feature
+  description: Eclipse feature bundling all DDK plugins
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.check.core
+    - component:default/com.avaloq.tools.ddk.check.ide
+    - component:default/com.avaloq.tools.ddk.check.runtime.ui
+    - component:default/com.avaloq.tools.ddk.check.ui
+    - component:default/com.avaloq.tools.ddk.checkcfg.core
+    - component:default/com.avaloq.tools.ddk.checkcfg.ide
+    - component:default/com.avaloq.tools.ddk.checkcfg.ui
+    - component:default/com.avaloq.tools.ddk.runtime.feature
+    - component:default/com.avaloq.tools.ddk.test.core
+    - component:default/com.avaloq.tools.ddk.test.ui
+    - component:default/com.avaloq.tools.ddk.xtext.check.generator
+    - component:default/com.avaloq.tools.ddk.xtext.export
+    - component:default/com.avaloq.tools.ddk.xtext.export.generator
+    - component:default/com.avaloq.tools.ddk.xtext.export.ide
+    - component:default/com.avaloq.tools.ddk.xtext.export.ui
+    - component:default/com.avaloq.tools.ddk.xtext.expression.ide
+    - component:default/com.avaloq.tools.ddk.xtext.expression.ui
+    - component:default/com.avaloq.tools.ddk.xtext.format
+    - component:default/com.avaloq.tools.ddk.xtext.format.generator
+    - component:default/com.avaloq.tools.ddk.xtext.format.ide
+    - component:default/com.avaloq.tools.ddk.xtext.format.ui
+    - component:default/com.avaloq.tools.ddk.xtext.generator
+    - component:default/com.avaloq.tools.ddk.xtext.scope
+    - component:default/com.avaloq.tools.ddk.xtext.scope.generator
+    - component:default/com.avaloq.tools.ddk.xtext.scope.ide
+    - component:default/com.avaloq.tools.ddk.xtext.scope.ui
+    - component:default/com.avaloq.tools.ddk.xtext.test.core
+    - component:default/com.avaloq.tools.ddk.xtext.valid
+    - component:default/com.avaloq.tools.ddk.xtext.valid.ide
+    - component:default/com.avaloq.tools.ddk.xtext.valid.ui
+  dependencyOf:
+    - component:default/ddk-repository
+  projects:
+    - com.avaloq.tools.ddk.feature

@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ddk-parent
+  description: Maven parent POM with shared build configuration
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: maven
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  projects:
+    - ddk-parent

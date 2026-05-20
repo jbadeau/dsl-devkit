@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ddk-target
+  description: Eclipse target platform definitions
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  projects:
+    - ddk-target

@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.xtext.export.ui
+  description: Export DSL Eclipse UI
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.xtext.export
+    - component:default/com.avaloq.tools.ddk.xtext.export.ide
+    - component:default/com.avaloq.tools.ddk.xtext.expression
+    - component:default/com.avaloq.tools.ddk.xtext.expression.ui
+    - component:default/com.avaloq.tools.ddk.xtext.ui
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.feature
+    - component:default/com.avaloq.tools.ddk.xtext.export.test
+  projects:
+    - com.avaloq.tools.ddk.xtext.export.ui

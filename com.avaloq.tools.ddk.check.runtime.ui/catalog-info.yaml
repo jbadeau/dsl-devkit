@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.check.runtime.ui
+  description: Check DSL runtime Eclipse UI
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.check.runtime.core
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.checkcfg.ui
+    - component:default/com.avaloq.tools.ddk.feature
+    - component:default/com.avaloq.tools.ddk.sample.helloworld.ui.test
+    - component:default/com.avaloq.tools.ddk.xtext.ui
+  projects:
+    - com.avaloq.tools.ddk.check.runtime.ui

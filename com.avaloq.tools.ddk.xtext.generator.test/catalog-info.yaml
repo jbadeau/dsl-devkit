@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.xtext.generator.test
+  description: Tests for Xtext generator fragments
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.test.core
+    - component:default/com.avaloq.tools.ddk.xtext.expression
+    - component:default/com.avaloq.tools.ddk.xtext.generator
+    - component:default/com.avaloq.tools.ddk.xtext.test.core
+    - component:default/com.avaloq.tools.ddk.xtext.ui
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.xtext.test
+  projects:
+    - com.avaloq.tools.ddk.xtext.generator.test

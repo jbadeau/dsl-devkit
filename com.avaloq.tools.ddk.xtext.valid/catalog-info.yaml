@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.xtext.valid
+  description: Valid DSL (deprecated, replaced by Check DSL)
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.xtext
+    - component:default/com.avaloq.tools.ddk.xtext.generator
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.feature
+    - component:default/com.avaloq.tools.ddk.workflow
+    - component:default/com.avaloq.tools.ddk.xtext.valid.ide
+    - component:default/com.avaloq.tools.ddk.xtext.valid.ui
+  projects:
+    - com.avaloq.tools.ddk.xtext.valid

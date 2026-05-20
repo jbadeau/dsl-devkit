@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.xtext.scope.generator
+  description: Scope DSL code generator
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.xtext
+    - component:default/com.avaloq.tools.ddk.xtext.generator
+    - component:default/com.avaloq.tools.ddk.xtext.scope
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.feature
+  projects:
+    - com.avaloq.tools.ddk.xtext.scope.generator

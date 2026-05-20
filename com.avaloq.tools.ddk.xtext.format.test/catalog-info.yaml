@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.xtext.format.test
+  description: Tests for Format DSL
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.xtext.format
+    - component:default/com.avaloq.tools.ddk.xtext.format.ui
+    - component:default/com.avaloq.tools.ddk.xtext.test.core
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.xtext.test
+  projects:
+    - com.avaloq.tools.ddk.xtext.format.test

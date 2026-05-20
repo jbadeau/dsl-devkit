@@ -1,0 +1,29 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.workflow
+  description: MWE2 workflow definitions for DSL code generation
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: none
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.check.core
+    - component:default/com.avaloq.tools.ddk.checkcfg.core
+    - component:default/com.avaloq.tools.ddk.typesystem
+    - component:default/com.avaloq.tools.ddk.xtext
+    - component:default/com.avaloq.tools.ddk.xtext.check.generator
+    - component:default/com.avaloq.tools.ddk.xtext.export
+    - component:default/com.avaloq.tools.ddk.xtext.expression
+    - component:default/com.avaloq.tools.ddk.xtext.format
+    - component:default/com.avaloq.tools.ddk.xtext.generator
+    - component:default/com.avaloq.tools.ddk.xtext.scope
+    - component:default/com.avaloq.tools.ddk.xtext.test
+    - component:default/com.avaloq.tools.ddk.xtext.valid
+  projects:
+    - com.avaloq.tools.ddk.workflow

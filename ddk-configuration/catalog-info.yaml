@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ddk-configuration
+  description: Build quality configuration (Checkstyle, PMD, SpotBugs)
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: maven
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit

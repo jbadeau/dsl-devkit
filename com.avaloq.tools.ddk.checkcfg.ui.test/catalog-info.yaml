@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.checkcfg.ui.test
+  description: Tests for Check Configuration DSL UI
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.xtext.test
+  projects:
+    - com.avaloq.tools.ddk.checkcfg.ui.test

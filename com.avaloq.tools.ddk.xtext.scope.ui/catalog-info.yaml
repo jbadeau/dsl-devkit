@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.xtext.scope.ui
+  description: Scope DSL Eclipse UI
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.xtext.expression
+    - component:default/com.avaloq.tools.ddk.xtext.expression.ui
+    - component:default/com.avaloq.tools.ddk.xtext.scope
+    - component:default/com.avaloq.tools.ddk.xtext.scope.ide
+    - component:default/com.avaloq.tools.ddk.xtext.ui
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.feature
+  projects:
+    - com.avaloq.tools.ddk.xtext.scope.ui

@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.check.test.runtime
+  description: Test utilities for Check DSL runtime
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.check.core
+    - component:default/com.avaloq.tools.ddk.check.lib
+    - component:default/com.avaloq.tools.ddk.check.runtime.core
+    - component:default/com.avaloq.tools.ddk.xtext
+    - component:default/com.avaloq.tools.ddk.xtext.generator
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.check.test.runtime.tests
+    - component:default/com.avaloq.tools.ddk.check.test.runtime.ui
+  projects:
+    - com.avaloq.tools.ddk.check.test.runtime

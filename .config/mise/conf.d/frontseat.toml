@@ -1,0 +1,4 @@
+[tools]
+# Managed by frontseat — do not edit. Synced from project manifests.
+java = ["latest", "temurin-21"]
+maven = "latest"

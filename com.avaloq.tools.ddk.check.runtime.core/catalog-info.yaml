@@ -1,0 +1,40 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.check.runtime.core
+  description: Check DSL headless runtime execution
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk
+    - component:default/com.avaloq.tools.ddk.xtext
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.check.core
+    - component:default/com.avaloq.tools.ddk.check.core.test
+    - component:default/com.avaloq.tools.ddk.check.ide
+    - component:default/com.avaloq.tools.ddk.check.runtime.core.test
+    - component:default/com.avaloq.tools.ddk.check.runtime.ui
+    - component:default/com.avaloq.tools.ddk.check.test.runtime
+    - component:default/com.avaloq.tools.ddk.check.test.runtime.tests
+    - component:default/com.avaloq.tools.ddk.check.test.runtime.ui
+    - component:default/com.avaloq.tools.ddk.check.ui
+    - component:default/com.avaloq.tools.ddk.check.ui.test
+    - component:default/com.avaloq.tools.ddk.checkcfg.core
+    - component:default/com.avaloq.tools.ddk.checkcfg.ide
+    - component:default/com.avaloq.tools.ddk.checkcfg.ui
+    - component:default/com.avaloq.tools.ddk.runtime.feature
+    - component:default/com.avaloq.tools.ddk.sample.helloworld
+    - component:default/com.avaloq.tools.ddk.sample.helloworld.ide
+    - component:default/com.avaloq.tools.ddk.sample.helloworld.ui
+    - component:default/com.avaloq.tools.ddk.sample.helloworld.ui.test
+    - component:default/com.avaloq.tools.ddk.xtext.check.generator
+    - component:default/com.avaloq.tools.ddk.xtext.test.core
+  projects:
+    - com.avaloq.tools.ddk.check.runtime.core

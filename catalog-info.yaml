@@ -1,0 +1,33 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: jbadeau
+spec:
+  memberOf:
+    - dsl-devkit-team
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: dsl-devkit-team
+  description: DSL Developer Kit maintainers
+spec:
+  type: team
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: dsl-devkit
+  description: Eclipse Xtext extension layer for DSL development
+spec:
+  owner: dsl-devkit-team
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: dsl-devkit
+  description: DSL Developer Kit - extends Eclipse Xtext runtime for sophisticated DSL design, scaling, and headless execution
+spec:
+  owner: dsl-devkit-team
+  domain: dsl-devkit

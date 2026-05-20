@@ -1,0 +1,28 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.test.core
+  description: Core test support for writing DSL tests
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.check.ui.test
+    - component:default/com.avaloq.tools.ddk.checkcfg.core.test
+    - component:default/com.avaloq.tools.ddk.feature
+    - component:default/com.avaloq.tools.ddk.test.ui
+    - component:default/com.avaloq.tools.ddk.test.ui.test
+    - component:default/com.avaloq.tools.ddk.xtext.generator.test
+    - component:default/com.avaloq.tools.ddk.xtext.test
+    - component:default/com.avaloq.tools.ddk.xtext.test.core
+    - component:default/com.avaloq.tools.ddk.xtext.ui.test
+  projects:
+    - com.avaloq.tools.ddk.test.core

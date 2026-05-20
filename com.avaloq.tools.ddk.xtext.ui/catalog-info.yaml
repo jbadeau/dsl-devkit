@@ -1,0 +1,35 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.xtext.ui
+  description: Xtext Eclipse UI extensions
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk
+    - component:default/com.avaloq.tools.ddk.check.runtime.ui
+    - component:default/com.avaloq.tools.ddk.xtext
+    - component:default/com.avaloq.tools.ddk.xtext.ide
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.check.ui
+    - component:default/com.avaloq.tools.ddk.check.ui.test
+    - component:default/com.avaloq.tools.ddk.checkcfg.ui
+    - component:default/com.avaloq.tools.ddk.runtime.feature
+    - component:default/com.avaloq.tools.ddk.sample.helloworld.ui
+    - component:default/com.avaloq.tools.ddk.xtext.export.ui
+    - component:default/com.avaloq.tools.ddk.xtext.format.ui
+    - component:default/com.avaloq.tools.ddk.xtext.generator
+    - component:default/com.avaloq.tools.ddk.xtext.generator.test
+    - component:default/com.avaloq.tools.ddk.xtext.scope.ui
+    - component:default/com.avaloq.tools.ddk.xtext.test
+    - component:default/com.avaloq.tools.ddk.xtext.ui.test
+    - component:default/com.avaloq.tools.ddk.xtext.valid.ui
+  projects:
+    - com.avaloq.tools.ddk.xtext.ui

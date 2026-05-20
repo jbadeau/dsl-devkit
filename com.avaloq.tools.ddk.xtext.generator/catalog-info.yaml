@@ -1,0 +1,33 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.xtext.generator
+  description: MWE2 workflow fragments for DSL generation
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.xtext
+    - component:default/com.avaloq.tools.ddk.xtext.expression
+    - component:default/com.avaloq.tools.ddk.xtext.expression.ui
+    - component:default/com.avaloq.tools.ddk.xtext.ui
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.check.core
+    - component:default/com.avaloq.tools.ddk.check.test.runtime
+    - component:default/com.avaloq.tools.ddk.feature
+    - component:default/com.avaloq.tools.ddk.sample.helloworld
+    - component:default/com.avaloq.tools.ddk.workflow
+    - component:default/com.avaloq.tools.ddk.xtext.export.generator
+    - component:default/com.avaloq.tools.ddk.xtext.format.generator
+    - component:default/com.avaloq.tools.ddk.xtext.generator.test
+    - component:default/com.avaloq.tools.ddk.xtext.scope.generator
+    - component:default/com.avaloq.tools.ddk.xtext.test
+    - component:default/com.avaloq.tools.ddk.xtext.valid
+  projects:
+    - com.avaloq.tools.ddk.xtext.generator

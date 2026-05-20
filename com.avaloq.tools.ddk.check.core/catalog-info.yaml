@@ -1,0 +1,32 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.check.core
+  description: Check DSL core grammar and language infrastructure
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.check.runtime.core
+    - component:default/com.avaloq.tools.ddk.xtext
+    - component:default/com.avaloq.tools.ddk.xtext.generator
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.check.core.test
+    - component:default/com.avaloq.tools.ddk.check.ide
+    - component:default/com.avaloq.tools.ddk.check.test.runtime
+    - component:default/com.avaloq.tools.ddk.check.ui
+    - component:default/com.avaloq.tools.ddk.check.ui.test
+    - component:default/com.avaloq.tools.ddk.checkcfg.core
+    - component:default/com.avaloq.tools.ddk.checkcfg.ide
+    - component:default/com.avaloq.tools.ddk.checkcfg.ui
+    - component:default/com.avaloq.tools.ddk.feature
+    - component:default/com.avaloq.tools.ddk.sample.helloworld
+    - component:default/com.avaloq.tools.ddk.workflow
+  projects:
+    - com.avaloq.tools.ddk.check.core

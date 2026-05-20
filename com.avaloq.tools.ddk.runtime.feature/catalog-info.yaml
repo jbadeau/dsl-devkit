@@ -1,0 +1,33 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.runtime.feature
+  description: Eclipse feature bundling DDK runtime plugins
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk
+    - component:default/com.avaloq.tools.ddk.check.lib
+    - component:default/com.avaloq.tools.ddk.check.runtime.core
+    - component:default/com.avaloq.tools.ddk.checkcfg.core
+    - component:default/com.avaloq.tools.ddk.checkcfg.ide
+    - component:default/com.avaloq.tools.ddk.typesystem
+    - component:default/com.avaloq.tools.ddk.xtext
+    - component:default/com.avaloq.tools.ddk.xtext.builder
+    - component:default/com.avaloq.tools.ddk.xtext.common.types
+    - component:default/com.avaloq.tools.ddk.xtext.common.types.ui
+    - component:default/com.avaloq.tools.ddk.xtext.expression
+    - component:default/com.avaloq.tools.ddk.xtext.ide
+    - component:default/com.avaloq.tools.ddk.xtext.ui
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.feature
+    - component:default/ddk-repository
+  projects:
+    - com.avaloq.tools.ddk.runtime.feature

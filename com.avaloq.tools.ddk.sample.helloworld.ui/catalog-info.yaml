@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.sample.helloworld.ui
+  description: HelloWorld sample DSL Eclipse UI
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.check.runtime.core
+    - component:default/com.avaloq.tools.ddk.sample.helloworld
+    - component:default/com.avaloq.tools.ddk.sample.helloworld.ide
+    - component:default/com.avaloq.tools.ddk.xtext.ide
+    - component:default/com.avaloq.tools.ddk.xtext.ui
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.sample.helloworld.ui.test
+  projects:
+    - com.avaloq.tools.ddk.sample.helloworld.ui

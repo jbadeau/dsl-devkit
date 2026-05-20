@@ -1,0 +1,31 @@
+apiVersion: frontseat.io/v1alpha1
+kind: Workspace
+metadata:
+  name: dsl-devkit
+spec:
+  assistant:
+    address: http://localhost:11434
+    provider: ollama
+  plugins:
+    frontseat/backstage: {}
+    frontseat/github: {}
+    frontseat/maven: {}
+    frontseat/mise: {}
+    frontseat/release-conventional-commits: {}
+    frontseat/release-flow: {}
+    frontseat/tycho: {}
+  reapi:
+    address: localhost:50051
+    logStreamAddress: localhost:50052
+    provider: buildgrid
+  ship:
+    branching:
+      strategy: release-flow
+    versioning:
+      strategy: conventional-commits
+  targets:
+    - linux/amd64
+  tools:
+    provider: mise
+  version: latest
+  workers: 4

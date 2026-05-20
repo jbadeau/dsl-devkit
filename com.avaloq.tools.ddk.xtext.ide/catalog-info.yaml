@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.xtext.ide
+  description: Xtext IDE/LSP extensions
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.xtext
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.checkcfg.ide
+    - component:default/com.avaloq.tools.ddk.runtime.feature
+    - component:default/com.avaloq.tools.ddk.sample.helloworld.ide
+    - component:default/com.avaloq.tools.ddk.sample.helloworld.ui
+    - component:default/com.avaloq.tools.ddk.xtext.ui
+  projects:
+    - com.avaloq.tools.ddk.xtext.ide

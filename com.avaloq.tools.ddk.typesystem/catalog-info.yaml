@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.typesystem
+  description: Type system foundation for DSLs
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.xtext
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.runtime.feature
+    - component:default/com.avaloq.tools.ddk.typesystem.test
+    - component:default/com.avaloq.tools.ddk.workflow
+    - component:default/com.avaloq.tools.ddk.xtext.test.core
+  projects:
+    - com.avaloq.tools.ddk.typesystem

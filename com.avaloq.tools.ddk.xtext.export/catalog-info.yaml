@@ -1,0 +1,26 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: com.avaloq.tools.ddk.xtext.export
+  description: Export DSL for model serialization rules
+  labels:
+    frontseat.dev/language: java
+  annotations:
+    frontseat.dev/plugins: tycho
+spec:
+  type: library
+  lifecycle: production
+  owner: dsl-devkit-team
+  system: dsl-devkit
+  dependsOn:
+    - component:default/com.avaloq.tools.ddk.xtext
+    - component:default/com.avaloq.tools.ddk.xtext.expression
+  dependencyOf:
+    - component:default/com.avaloq.tools.ddk.feature
+    - component:default/com.avaloq.tools.ddk.workflow
+    - component:default/com.avaloq.tools.ddk.xtext.export.generator
+    - component:default/com.avaloq.tools.ddk.xtext.export.ide
+    - component:default/com.avaloq.tools.ddk.xtext.export.test
+    - component:default/com.avaloq.tools.ddk.xtext.export.ui
+  projects:
+    - com.avaloq.tools.ddk.xtext.export
