@@ -2,7 +2,7 @@
 frontseat = "https://github.com/frontseat-dev/frontseat-mise.git"
 
 [tools]
-"frontseat:frontseat" = { version = "latest", plugins = "backstage,github,mise,release-conventional-commits,release-flow" }
+"frontseat:frontseat" = { version = "latest", plugins = "backstage,github,mise,release-conventional-commits,release-flow,tycho,maven" }
 
 [shell_alias]
 fs = "frontseat"
