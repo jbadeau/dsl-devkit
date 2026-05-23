@@ -48,3 +48,53 @@ You can find more detailed documentation and examples at [ddk.tools.avaloq.com](
 # Overview
 
 DSL Developer Kit is an extension layer to Xtext built for active Xtext users. It extends Xtext runtime to handle more sophisticated cases in DSL design, to support scaling for larger models and better monitoring and recovery in headless frameworks based on Xtext. DDK comes with a few handy small DSLs helping to standardize implementations of tools for DSLs. Read the [introduction](https://ddk.tools.avaloq.com/overview.html).
+
+# Frontseat
+
+This repository is managed by [Frontseat](https://github.com/frontseat-dev/frontseat), a polyglot build orchestrator that uses Backstage catalog entities (`catalog-info.yaml`) to model build targets. Frontseat discovers entities, resolves dependencies, and orchestrates builds with content-addressable caching.
+
+```bash
+# Install Frontseat via mise
+mise install
+
+# Build the project
+frontseat build //
+```
+
+## REAPI Remote Caching
+
+Frontseat uses a [BuildGrid](https://buildgrid.build/) instance for Bazel-compatible remote caching (CAS + action cache). This avoids redundant work by caching build action results keyed on their inputs.
+
+```bash
+# Start the cache server
+docker compose up server
+
+# Build with remote caching
+frontseat build //
+```
+
+| Service | URL | Description |
+|---------|-----|-------------|
+| server | `grpc://localhost:50051` | BuildGrid REAPI server (CAS + action cache) |
+| browser | [localhost:5001](http://localhost:5001) | Web UI for inspecting cached actions and CAS |
+| jaeger | [localhost:16686](http://localhost:16686) | Distributed tracing UI (OpenTelemetry) |
+
+Configuration files live in `reapi/buildgrid/config/`.
+
+# Backstage
+
+A local [Backstage](https://backstage.io/) instance can be started via Docker Compose to browse the software catalog and TechDocs.
+
+```bash
+# Start Backstage
+mise run dev
+
+# Or directly
+docker compose up backstage
+```
+
+| Service | URL | Description |
+|---------|-----|-------------|
+| backstage | [localhost:7007](http://localhost:7007) | Software catalog and TechDocs |
+
+Switch the catalog filter from "Owned" to "All" to see all entities.

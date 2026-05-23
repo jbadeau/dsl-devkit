@@ -1,0 +1,24 @@
+# LogStream Server Configuration
+# Runs on port 50052 (separate from main BuildGrid on 50051)
+
+channels:
+  - address: "[::]:50052"
+
+redis:
+  logstream-redis:
+    mode: pool
+    host: logstream-redis
+    port: 6379
+
+storage:
+  logstream-storage:
+    redis:
+      - logstream-redis
+    max_stream_size: 1000
+    read_blocking_seconds: 30
+
+metric:
+  mode: "log"
+
+server:
+  storage: logstream-storage

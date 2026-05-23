@@ -1,0 +1,63 @@
+# BuildGrid Configuration - PostgreSQL backend
+description: |
+  Frontseat BuildGrid - Remote Execution Server
+
+server:
+  - !channel
+    address: "[::]:50051"
+    insecure-mode: true
+
+authorization:
+  method: none
+
+connections:
+  - !sql-connection &sql
+    connection-string: postgresql://bgd:insecure@postgres:5432/bgd
+
+storages:
+  - !disk-storage &main-storage
+    path: /var/lib/buildgrid/store
+
+caches:
+  - !lru-action-cache &main-cache
+    storage: *main-storage
+    max-cached-refs: 1024
+    allow-updates: true
+    cache-failed-actions: true
+
+schedulers:
+  - !sql-scheduler &main-scheduler
+    sql: *sql
+    action-cache: *main-cache
+    storage: *main-storage
+    # Configure LogStream for stdout/stderr streaming during execution
+    logstream:
+      url: "http://logstream:50052"
+      instance-name: ""
+
+instances:
+  - name: ""
+    description: |
+      Default instance
+
+    services:
+      - !action-cache
+        cache: *main-cache
+
+      - !execution
+        scheduler: *main-scheduler
+        operation-stream-keepalive-timeout: 120
+
+      - !bots
+        scheduler: *main-scheduler
+
+      - !cas
+        storage: *main-storage
+
+      - !bytestream
+        storage: *main-storage
+
+monitoring:
+  enabled: false
+
+thread-pool-size: 100

@@ -7,5 +7,9 @@ frontseat = "https://github.com/frontseat-dev/frontseat-mise.git"
 [shell_alias]
 fs = "frontseat"
 
+[tasks.dev]
+description = "Start Backstage via Docker Compose"
+run = "docker compose up"
+
 [settings]
 experimental = true

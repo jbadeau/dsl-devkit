@@ -28,6 +28,82 @@ kind: System
 metadata:
   name: dsl-devkit
   description: DSL Developer Kit - extends Eclipse Xtext runtime for sophisticated DSL design, scaling, and headless execution
+  annotations:
+    backstage.io/techdocs-ref: dir:.
 spec:
   owner: dsl-devkit-team
   domain: dsl-devkit
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: dsl-devkit
+  description: All DSL DevKit catalog entities
+spec:
+  targets:
+    - ./com.avaloq.tools.ddk/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.check.core/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.check.core.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.check.ide/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.check.lib/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.check.runtime.core/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.check.runtime.core.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.check.runtime.ui/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.check.test.runtime/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.check.test.runtime.tests/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.check.test.runtime.ui/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.check.ui/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.check.ui.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.checkcfg.core/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.checkcfg.core.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.checkcfg.ide/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.checkcfg.ui/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.checkcfg.ui.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.feature/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.runtime.feature/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.sample.helloworld/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.sample.helloworld.ide/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.sample.helloworld.ui/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.sample.helloworld.ui.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.test.core/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.test.ui/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.test.ui.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.typesystem/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.typesystem.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.workflow/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.builder/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.check.generator/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.common.types/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.common.types.ui/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.export/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.export.generator/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.export.ide/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.export.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.export.ui/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.expression/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.expression.ide/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.expression.ui/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.format/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.format.generator/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.format.ide/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.format.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.format.ui/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.generator/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.generator.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.ide/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.scope/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.scope.generator/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.scope.ide/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.scope.ui/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.test.core/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.ui/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.ui.test/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.valid/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.valid.ide/catalog-info.yaml
+    - ./com.avaloq.tools.ddk.xtext.valid.ui/catalog-info.yaml
+    - ./ddk-configuration/catalog-info.yaml
+    - ./ddk-parent/catalog-info.yaml
+    - ./ddk-repository/catalog-info.yaml
+    - ./ddk-target/catalog-info.yaml

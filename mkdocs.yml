@@ -1,0 +1,8 @@
+site_name: DSL DevKit
+nav:
+  - Home: index.md
+plugins:
+  - techdocs-core
+markdown_extensions:
+  - toc:
+      permalink: true

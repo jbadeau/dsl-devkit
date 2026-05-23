@@ -1,0 +1,32 @@
+app:
+  title: DSL DevKit Backstage
+  baseUrl: http://localhost:7007
+
+organization:
+  name: DSL DevKit
+
+backend:
+  baseUrl: http://localhost:7007
+
+techdocs:
+  builder: local
+  generator:
+    runIn: local
+  publisher:
+    type: local
+
+catalog:
+  rules:
+    - allow:
+        - Component
+        - System
+        - API
+        - Resource
+        - Domain
+        - Group
+        - User
+        - Location
+
+  locations:
+    - type: file
+      target: /repo/catalog-info.yaml

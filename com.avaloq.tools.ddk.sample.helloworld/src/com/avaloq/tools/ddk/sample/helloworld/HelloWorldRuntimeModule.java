@@ -13,6 +13,7 @@ import com.avaloq.tools.ddk.xtext.parser.ISemanticPredicates;
 /**
  * Use this class to register components to be used at runtime / without the
  * Equinox extension registry.
+ *
  */
 public class HelloWorldRuntimeModule extends AbstractHelloWorldRuntimeModule {
     /**

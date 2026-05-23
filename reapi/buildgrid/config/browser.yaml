@@ -1,0 +1,16 @@
+build: true
+port: 5001
+env: local
+appType: dev
+
+namespaces:
+  frontseat:
+    allowOperationCancelling: true
+    description: |
+      Frontseat BuildGrid instance for remote execution
+    remote:
+      url: server:50051
+      instanceName: ''
+    logstream:
+      url: logstream:50052
+      instanceName: ''

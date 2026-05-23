@@ -1,0 +1,177 @@
+services:
+  # ── Backstage ─────────────────────────────────────────────────
+  backstage:
+    image: roadiehq/community-backstage-image:latest
+    command:
+      - node
+      - packages/backend
+      - --config
+      - app-config.yaml
+      - --config
+      - app-config.local.yaml
+    ports:
+      - "7007:7000"
+    volumes:
+      - ./:/repo:ro
+      - ./app-config.yaml:/usr/src/app/app-config.local.yaml:ro
+
+  # ── REAPI / BuildGrid ────────────────────────────────────────
+  jaeger:
+    image: jaegertracing/all-in-one:1.54@sha256:f4044964505c81bf12131c2dfd1f4ddf1d1421bbbd9d79f691221cac077599a8
+    platform: linux/amd64
+    ports:
+      - "16686:16686"  # Web UI
+      - "4317:4317"    # OTLP gRPC
+      - "4318:4318"    # OTLP HTTP
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    networks:
+      - buildgrid
+
+  postgres:
+    image: postgres:16-alpine@sha256:4e6e670bb069649261c9c18031f0aded7bb249a5b6664ddec29c013a89310d50
+    platform: linux/amd64
+    environment:
+      POSTGRES_USER: bgd
+      POSTGRES_PASSWORD: insecure
+      POSTGRES_DB: bgd
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - buildgrid
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bgd"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  logstream-redis:
+    image: redis:7-alpine@sha256:7aec734b2bb298a1d769fd8729f13b8514a41bf90fcdd1f38ec52267fbaa8ee6
+    platform: linux/amd64
+    networks:
+      - buildgrid
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  logstream:
+    build:
+      context: ./reapi/buildgrid
+      dockerfile: Dockerfile.logstream
+      platforms:
+        - linux/amd64
+    image: frontseat-logstream:latest
+    platform: linux/amd64
+    ports:
+      - "50052:50052"
+    volumes:
+      - ./reapi/buildgrid/config:/etc/buildgrid
+    depends_on:
+      logstream-redis:
+        condition: service_healthy
+    networks:
+      - buildgrid
+    command: ["--server-config", "/etc/buildgrid/logstream.yaml"]
+    healthcheck:
+      test: ["CMD", "grpc_health_probe", "-addr=:50052"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  db-init:
+    image: registry.gitlab.com/buildgrid/buildgrid.hub.docker.com/buildgrid:nightly@sha256:fc312d6f1d46e2f8c4be0a5a4d6fe0a0cf3f34c0a0aadee00489cc72d28c5e22
+    platform: linux/amd64
+    volumes:
+      - ./reapi/buildgrid/scripts:/scripts
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - buildgrid
+    command: ["python3", "/scripts/init-db.py", "postgresql://bgd:insecure@postgres:5432/bgd"]
+
+  server:
+    image: registry.gitlab.com/buildgrid/buildgrid.hub.docker.com/buildgrid:nightly@sha256:fc312d6f1d46e2f8c4be0a5a4d6fe0a0cf3f34c0a0aadee00489cc72d28c5e22
+    platform: linux/amd64
+    ports:
+      - "50051:50051"
+    volumes:
+      - ./reapi/buildgrid/config:/etc/buildgrid
+      - storage-data:/var/lib/buildgrid
+    depends_on:
+      logstream:
+        condition: service_healthy
+      db-init:
+        condition: service_completed_successfully
+    networks:
+      - buildgrid
+    command: ["bgd", "server", "start", "/etc/buildgrid/config.yml"]
+
+  browser:
+    image: registry.gitlab.com/buildgrid/bgd-browser/bgd-browser:latest
+    platform: linux/amd64
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./reapi/buildgrid/config/browser.yaml:/app/config.yaml
+    depends_on:
+      server:
+        condition: service_started
+    networks:
+      - buildgrid
+    command: ["--config", "/app/config.yaml"]
+
+  worker:
+    build:
+      context: ./reapi/buildgrid
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+    image: frontseat-buildgrid-worker:latest
+    platform: linux/amd64
+    restart: unless-stopped
+    deploy:
+      replicas: 4
+    volumes:
+      - /tmp/worker:/tmp/worker
+      - go-mod-cache:/root/go/pkg/mod
+      - npm-cache:/root/.npm
+      - mise-cache:/root/.local/share/mise
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - GOMODCACHE=/root/go/pkg/mod
+      - npm_config_cache=/root/.npm
+    depends_on:
+      server:
+        condition: service_started
+    networks:
+      - buildgrid
+    command:
+      - /bin/sh
+      - -c
+      - |
+        buildbox-worker \
+          --bots-remote=http://server:50051 \
+          --cas-remote=http://server:50051 \
+          --logstream-remote=http://logstream:50052 \
+          --logstream-instance= \
+          --buildbox-run=/usr/local/bin/buildbox-run-hosttools \
+          --request-timeout=300 \
+          --platform=OSFamily=linux \
+          --runner-arg=--disable-localcas \
+          --runner-arg=--log-level=debug \
+          --log-level=debug \
+          "frontseat-worker-$$(hostname)"
+
+networks:
+  buildgrid:
+    driver: bridge
+
+volumes:
+  storage-data:
+  postgres-data:
+  go-mod-cache:
+  npm-cache:
+  mise-cache:
